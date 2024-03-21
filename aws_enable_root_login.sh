@@ -16,7 +16,7 @@ sed -i 's/^UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
 # 4. 编辑authorized_keys文件
 echo "Editing authorized_keys file..."
-sed -i 's/ssh-rsa .*$/ssh-rsa/g' /root/.ssh/authorized_keys
+sed -i 's/^ssh-rsa[[:space:]]*//g' /root/.ssh/authorized_keys
 
 # 5. 重启 SSH 服务
 echo "Restarting SSH service..."
