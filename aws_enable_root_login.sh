@@ -1,18 +1,21 @@
 #!/bin/bash
 
-# 创建root用户并设置密码
+# 第一步：创建root用户并设置密码
+echo "Creating root user and setting password..."
 echo -e "Abcd@1234\nAbcd@1234" | sudo passwd root
 
-# 切换到root用户
-sudo su - root -c "echo -e 'Abcd@1234\nAbcd@1234' | passwd"
+# 第二步：切换到root用户
+echo "Switching to root user..."
+su - root -c "echo 'Switched to root user.'"
 
-# 编辑SSH配置文件
-sudo sed -i 's/#PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-sudo sed -i 's/#PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+# 第三步：编辑ssh配置文件
+echo "Editing sshd_config file..."
+sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
-# 重启SSH服务
-sudo systemctl restart sshd
-
-# 编辑authorized_keys文件
+# 第四步：编辑authorized_keys文件
+echo "Editing authorized_keys file..."
 sudo sed -i 's/ssh-rsa.*$/ssh-rsa/g' /root/.ssh/authorized_keys
+
+echo "All steps completed."
