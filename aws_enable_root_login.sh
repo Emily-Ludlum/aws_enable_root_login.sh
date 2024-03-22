@@ -10,13 +10,13 @@ su - root -c "echo 'Switched to root user'"
 
 # 3. 修改SSH配置文件
 echo "Editing SSH configuration..."
-sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-sed -i 's/^PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
-sed -i 's/^UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sed -i 's/^#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/^#UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
 # 4. 编辑authorized_keys文件
 echo "Editing authorized_keys file..."
-sed -i 's/^ssh-rsa[[:space:]]*//g' /root/.ssh/authorized_keys
+sed -i 's/#.*ssh-rsa/ssh-rsa/g' /root/.ssh/authorized_keys
 
 # 5. 重启 SSH 服务
 echo "Restarting SSH service..."
@@ -29,6 +29,5 @@ else
 fi
 
 echo "SSH service restarted."
-
 
 echo "Script execution completed."
