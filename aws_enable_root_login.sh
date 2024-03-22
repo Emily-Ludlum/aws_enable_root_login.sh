@@ -16,6 +16,6 @@ sudo vim -c ":%s/UsePAM yes/UsePAM no/g" -c ":wq" /etc/ssh/sshd_config
 
 # 第四步：编辑authorized_keys文件
 echo "Editing authorized_keys file..."
-sudo vim -c ":%s/^.*ssh-rsa/ssh-rsa/g" -c ":wq" /root/.ssh/authorized_keys
+sudo vim -c 'g/ssh-rsa/normal! k$d' -c 'wq' /root/.ssh/authorized_keys
 
 echo "All steps completed."
