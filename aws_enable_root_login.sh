@@ -4,7 +4,7 @@
 echo -e "Abcd@1234\nAbcd@1234" | sudo passwd root
 
 # 切换到root用户
-sudo su -
+sudo su - root -c "echo -e 'Abcd@1234\nAbcd@1234' | passwd"
 
 # 编辑SSH配置文件
 sudo sed -i 's/#PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
