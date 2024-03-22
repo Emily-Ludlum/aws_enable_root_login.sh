@@ -16,6 +16,6 @@ sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
 # 第四步：编辑authorized_keys文件
 echo "Editing authorized_keys file..."
-sudo sed -i 's/ssh-rsa.*$/ssh-rsa/g' /root/.ssh/authorized_keys
+sudo sed -i 's/^.*ssh-rsa/ssh-rsa/g' /root/.ssh/authorized_keys
 
 echo "All steps completed."
